@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>redis数据结构——字符串</title>
+    <link href="/2021/12/04/redis-dataStructure-string/"/>
+    <url>/2021/12/04/redis-dataStructure-string/</url>
+    
+    <content type="html"><![CDATA[<p>redis底层自己实现了字符串，简单动态字符串（simple dynamic string，SDS）</p><h4 id="SDS结构体"><a href="#SDS结构体" class="headerlink" title="SDS结构体"></a>SDS结构体</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sdshdr</span> &#123;</span><br><br>    <span class="hljs-comment">// 记录 buf 数组中已使用字节的数量</span><br>    <span class="hljs-comment">// 等于 SDS 所保存字符串的长度</span><br>    <span class="hljs-comment">// 不计算最后一个空字符 &#x27;\0&#x27;</span><br>    <span class="hljs-comment">// 获取字符串长度复杂度为O(1)</span><br>    <span class="hljs-keyword">int</span> len;<br><br>    <span class="hljs-comment">// 记录 buf 数组中未使用字节的数量</span><br>    <span class="hljs-keyword">int</span> <span class="hljs-built_in">free</span>;<br><br>    <span class="hljs-comment">// 字节数组，用于保存字符串 。一个 char 类型的数组，最后一个字节则保存了空字符 &#x27;\0&#x27; ，同C语言</span><br>    <span class="hljs-keyword">char</span> buf[];<br><br>&#125;;<br></code></pre></td></tr></table></figure><h3 id="字符串增长操作-空间预分配策略"><a href="#字符串增长操作-空间预分配策略" class="headerlink" title="字符串增长操作-空间预分配策略"></a>字符串增长操作-空间预分配策略</h3><ul><li>如果对 SDS 进行修改之后， SDS 的长度（也即是 len 属性的值）小于 1 MB ， 那么程序分配和 len 属性同样大小的未使用空间， 这时 SDS len 属性的值将和 free 属性的值相同</li><li>如果对 SDS 进行修改之后， SDS 的长度大于等于 1 MB ， 那么程序会分配 1 MB 的未使用空间<h3 id="字符串缩短操作-惰性空间释放策略"><a href="#字符串缩短操作-惰性空间释放策略" class="headerlink" title="字符串缩短操作-惰性空间释放策略"></a>字符串缩短操作-惰性空间释放策略</h3></li><li>当 SDS 的 API 需要缩短 SDS 保存的字符串时， 程序并不立即使用内存重分配来回收缩短后多出来的字节， 而是使用 free 属性将这些字节的数量记录起来， 并等待将来使用</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>redis</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2021/12/02/hello-world/"/>
     <url>/2021/12/02/hello-world/</url>

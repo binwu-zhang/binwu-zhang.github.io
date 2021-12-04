@@ -190,6 +190,50 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/12/04/redis-dataStructure-string/" target="_self">
+          redis数据结构——字符串
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/12/04/redis-dataStructure-string/" target="_self">
+          
+          
+            
+          
+          redis底层自己实现了字符串，简单动态字符串（simple dynamic string，SDS）
+SDS结构体123456789101112131415struct sdshdr &#123;    // 记录 buf 数组中已使用字节的数量    // 等于 SDS 所保存字符串的长度    // 不计算最后一个空字符 &#x27;\0&#x27;    // 获取字符串长度复杂度为O(1)
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-04 15:09" pubdate>
+              2021-12-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/redis/">redis</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/12/02/hello-world/" target="_self">
           Hello World
         </a>
